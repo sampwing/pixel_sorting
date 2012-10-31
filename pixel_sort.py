@@ -26,12 +26,12 @@ def draw():
         sortRow()
         row += 1
 
-def case0(x, y):
+def casey0(x, y):
         y = getFirstNotBlackY(x, y)
         yend = getNextBlackY(x, y)
         return y, yend
 
-def caseX0(x, y):
+def casex0(x, y):
         x = getFirstNotBlackX(x, y)
         xend = getNextBlackX(x, y)
         return x, xend
@@ -40,27 +40,19 @@ def sortRow():
     x = 0
     y = row
     xend = 0
-
-    while xend < width-1:
-        x, xend = caseX0(x, y)
+    while xend < width - 1:
+        if mode == 0:
+            x, xend = casex0(x, y)
         if x < 0:
             break
-        sortLength = xend-x
-
+        sortLength = xend - x
         unsorted = [0] * sortLength
         for i in xrange(sortLength):
-            #unsorted[i] = img.pixels[x + i + y * img.width]
-            unsorted[i] = pix[x + 1, y]
-
-
+            unsorted[i] = pix[x + i, y]
         _sorted = sorted(unsorted)
-
         for i in xrange(sortLength):
-            pix[x + 1, y] = _sorted[i]
-        x = xend+1
-  
-
-
+            pix[x + i, y] = _sorted[i]
+        x = xend + 1
 
 def sortColumn():
     x = column
@@ -68,7 +60,7 @@ def sortColumn():
     yend = 0
     while yend < height - 1:
         if mode == 0: 
-            y, yend = case0(x, y)
+            y, yend = casey0(x, y)
         if y < 0:
             break
         sortLength = yend - y
