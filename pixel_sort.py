@@ -31,31 +31,17 @@ def sortColumn():
     x = column
     y = 0
     yend = 0
-
-    #    _switch = 0: lambda: case0
-
     while yend < height - 1:
         if mode == 0: 
             y, yend = case0(x, y)
-        #_switch[mode]()
-        import pdb
-        #pdb.set_trace()
         if y < 0:
             break
-
         sortLength = yend - y
-
         unsorted = [0] * sortLength
-
         for i in xrange(sortLength):
-            #unsorted[i] = img.pixels[x + (y + i) * img.width]
             unsorted[i] = pix[x, (y + i)]
-        
-
         _sorted = sorted(unsorted)
-
         for i in xrange(sortLength):
-            #img.pixels[x + (y+i) * img.width] = sorted[i]
             pix[x, (y+i)] = _sorted[i]
         y = yend + 1
     
@@ -64,7 +50,6 @@ def getFirstNotBlackX(_x, _y):
     y = _y
     c = pix[x, y]
     while c  < blackValue:
-        #c = img.pixels[x + y * img.width]
         x += 1
         if x >= width:
             return -1
